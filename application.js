@@ -21,7 +21,7 @@ Application.prototype = {
 		for (var i in this.m_images)
 		{
 			var img = new Image();
-			img.src += 'images/' + this.m_images[i];
+			img.src += 'res/img/' + this.m_images[i];
 			this.m_totalImages++;
 			img.onload = function() { app.loadingImages(); }
 			
