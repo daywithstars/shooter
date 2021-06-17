@@ -1,0 +1,26 @@
+<!-- Jogo definitivo -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Application class</title>
+		<script src="application.js"></script>
+		<script src="screen-play.js"></script>
+		<script src="background.js"></script>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="384" height="360"></canvas>
+		<script>
+			var context = document.getElementById('myCanvas').getContext('2d');
+			var app = new Application(context);
+			app.run();
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
