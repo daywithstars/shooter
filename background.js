@@ -15,10 +15,10 @@ Background.prototype = {
 		}
 	},
 	draw: function() {
-		var ctx = this.m_context;
-		var img = this.m_image;
+		let ctx = this.m_context;
+		let img = this.m_image;
 		
-		var posY = this.m_y - img.height;
+		let posY = this.m_y - img.height;
 		ctx.drawImage(img, 0, posY, img.width, img.height);
 		
 		posY = this.m_y;

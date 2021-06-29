@@ -7,21 +7,28 @@ function ScreenPlay(context, app) {
 	this.m_running = true;
 }
 ScreenPlay.prototype = {
-	load: function() {
-		var sprites = this.m_sprites;
-		var ctx = this.m_context;
+	initialize: function() {
+		let sprites = this.m_sprites;
+		let ctx = this.m_context;
 		
-		var bg1 = new Background(ctx, this.m_app.m_images['background_image1'], 8);
+		//Background initialize
+		let bg1 = new Background(ctx, this.m_app.m_images['background_image1'], 8);
+		bg1.m_screen = this;
 		sprites.push(bg1);
+		
+		//Player initialize
+		let pl = new Player(ctx, this.m_app.m_images['player_image'], this.m_app.m_keyboard);
+		pl.m_screen = this;
+		sprites.push(pl);
 	},
 	update: function(elapsedTime) {
-		for (var i in this.m_sprites) 
+		for (let i in this.m_sprites) 
 		{
 			this.m_sprites[i].update(elapsedTime);
 		}
 	},
 	draw: function() {
-		for (var i in this.m_sprites)
+		for (let i in this.m_sprites)
 		{
 			this.m_sprites[i].draw();
 		}

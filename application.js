@@ -1,7 +1,10 @@
 function Application(context) {
     this.m_context = context;
+    this.m_keyboard = new Keyboard(document);
+    
     this.m_images = {
-    	background_image1: 'background-image1.png'
+    	background_image1: 'background-image1.png',
+    	player_image: 'spaceship.png'
     }
     this.m_totalImages = 0;
     this.m_loadedImagesCount = 0;
@@ -15,12 +18,12 @@ Application.prototype = {
 		this.load();
 	},
 	load: function() {
-		var app = this;
+		let app = this;
 	
 		//Load images
-		for (var i in this.m_images)
+		for (let i in this.m_images)
 		{
-			var img = new Image();
+			let img = new Image();
 			img.src += 'res/img/' + this.m_images[i];
 			this.m_totalImages++;
 			img.onload = function() { app.loadingImages(); }
@@ -29,8 +32,8 @@ Application.prototype = {
 		}
 	
 	
-		var screenPlay = new ScreenPlay(this.m_context, this);
-		screenPlay.load();
+		let screenPlay = new ScreenPlay(this.m_context, this);
+		screenPlay.initialize();
 	
 		this.m_screens.push(screenPlay);
 	},
@@ -38,6 +41,7 @@ Application.prototype = {
 		this.m_loadedImagesCount ++;
 		if (this.m_loadedImagesCount >= this.m_totalImages)
 		{
+			console.log('application-loadingImage: images successful loaded\n');
 			this.m_running = true;
 			
 			this.m_prevElapsedTime = new Date().getTime();
@@ -47,19 +51,21 @@ Application.prototype = {
 	update: function() {
 		if (! this.m_running) return ;
 		
-		var currentElapsedTime = new Date().getTime();
+		let currentElapsedTime = new Date().getTime();
 		this.m_elapsedTime = currentElapsedTime - this.m_prevElapsedTime;
 		
-		for (var i in this.m_screens)
+		
+		
+		for (let i in this.m_screens)
 		{
 			this.m_screens[i].update(this.m_elapsedTime);
 		}
-		
+		this.m_keyboard.clearFrame();
 		
 		this.draw();
 		
 		this.m_prevElapsedTime = currentElapsedTime;
-		var app = this;
+		let app = this;
 		requestAnimationFrame( 
 			function() {
 				app.update();
@@ -67,10 +73,10 @@ Application.prototype = {
 		);
 	},
 	draw: function() {
-		var ctx = this.m_context;
+		let ctx = this.m_context;
 		ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		
-		for (var i in this.m_screens)
+		for (let i in this.m_screens)
 		{
 			this.m_screens[i].draw();
 		}
