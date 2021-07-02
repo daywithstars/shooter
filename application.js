@@ -4,7 +4,8 @@ function Application(context) {
     
     this.m_images = {
     	background_image1: 'background-image1.png',
-    	player_image: 'spaceship.png'
+    	player_image: 'spaceship.png',
+    	bullet_image: 'bullet.png'
     }
     this.m_totalImages = 0;
     this.m_loadedImagesCount = 0;
@@ -41,7 +42,8 @@ Application.prototype = {
 		this.m_loadedImagesCount ++;
 		if (this.m_loadedImagesCount >= this.m_totalImages)
 		{
-			console.log('application-loadingImage: images successful loaded\n');
+			console.log('application-loadingImage: ' + this.m_totalImages + ' ' + 
+				'images successful loaded\n');
 			this.m_running = true;
 			
 			this.m_prevElapsedTime = new Date().getTime();

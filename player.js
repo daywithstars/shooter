@@ -26,6 +26,30 @@ Player.prototype = {
 			this.m_y -= elapsedTime * this.m_speed;
 		}
 		
+		if (this.m_keyboard.keypress(KEYBOARD_KEYS.SPACE))
+		{
+			let bulletImage = this.m_screen.m_app.m_images['bullet_image'];
+		
+			this.m_screen.addSprite(
+				new Bullet(
+					this.m_context, 
+					bulletImage, 
+					this.m_x + 2, 
+					this.m_y, 
+					-300
+					)
+			);
+			
+			this.m_screen.addSprite(
+				new Bullet(
+					this.m_context, 
+					bulletImage, 
+					this.m_x + this.m_image.width - 10, 
+					this.m_y, 
+					-300
+					)
+			);
+		}
 		
 		this.moveLimits();
 	},
