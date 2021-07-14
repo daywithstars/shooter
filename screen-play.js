@@ -18,6 +18,13 @@ ScreenPlay.prototype = {
 		//Player initialize
 		let pl = new Player(ctx, this.m_app.m_images['player_image'], this.m_app.m_keyboard);
 		this.addSprite(pl);
+		
+		//Asteroid initialize
+		for (let i = 0; i < 10; i++)
+		{
+			let asteroid = new Asteroid(ctx, this.m_app.m_images['asteroid_image']);
+			this.addSprite(asteroid);
+		}
 	},
 	addSprite: function(sprite) {
 		this.m_sprites.push(sprite);

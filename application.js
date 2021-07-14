@@ -5,7 +5,8 @@ function Application(context) {
     this.m_images = {
     	background_image1: 'background-image1.png',
     	player_image: 'spaceship.png',
-    	bullet_image: 'bullet.png'
+    	bullet_image: 'bullet.png',
+    	asteroid_image: 'asteroid.png'
     }
     this.m_totalImages = 0;
     this.m_loadedImagesCount = 0;
