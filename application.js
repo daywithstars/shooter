@@ -1,4 +1,5 @@
 function Application(context) {
+
     this.m_context = context;
     this.m_keyboard = new Keyboard(document);
     
@@ -17,6 +18,7 @@ function Application(context) {
 }
 Application.prototype = {
 	run: function() {
+		this.screenSettings();
 		this.load();
 	},
 	load: function() {
@@ -83,6 +85,18 @@ Application.prototype = {
 		{
 			this.m_screens[i].draw();
 		}
+	},
+	screenSettings: function() {
+		console.log('screen-settings');
+	
+		let screenWidth = window.screen.width;
+		let screenHeight = window.screen.height;
+
+		this.m_context.canvas.width = Math.floor(screenWidth / this.m_context.canvas.width) * 
+		this.m_context.canvas.width;
+			
+		this.m_context.canvas.height = Math.floor(screenHeight / this.m_context.canvas.height) * 
+		this.m_context.canvas.height;
 	}
 }
 
