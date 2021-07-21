@@ -91,12 +91,18 @@ Application.prototype = {
 	
 		let screenWidth = window.screen.width;
 		let screenHeight = window.screen.height;
+		
+		console.log('screen width: ' + screenWidth);
+		console.log('screen height: ' + screenHeight);
 
 		this.m_context.canvas.width = Math.floor(screenWidth / this.m_context.canvas.width) * 
 		this.m_context.canvas.width;
 			
 		this.m_context.canvas.height = Math.floor(screenHeight / this.m_context.canvas.height) * 
 		this.m_context.canvas.height;
+		
+		console.log('context width: ' + this.m_context.canvas.width);
+		console.log('context height: ' + this.m_context.canvas.height);
 	}
 }
 
