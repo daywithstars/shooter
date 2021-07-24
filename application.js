@@ -91,15 +91,98 @@ Application.prototype = {
 	
 		let screenWidth = window.screen.width;
 		let screenHeight = window.screen.height;
+		this.m_context.canvas.width = 360;
+		this.m_context.canvas.height = 640;
+		
+		if (screenWidth > screenHeight)
+		{
+			if (screenWidth / screenHeight  == 640/360)
+			{
+				console.log('case 0');
+				
+				let widthScale = 1;
+				let heightScale = 1;
+				
+				let j = screenHeight;
+				let i = screenWidth;
+				while (true)
+				{
+					j -= 640;
+					i -= 360;
+					if (j < 640)
+					{
+						break;
+					}
+					
+					if (i < 360)
+					{
+						break;
+					}
+					widthScale ++;
+					heightScale++;
+				}
+				
+				document.getElementById('myCanvas').style.width = (widthScale * 360).toString() + 'px';
+				document.getElementById('myCanvas').style.height = (heightScale * 640).toString() + 'px';
+			}
+			else {
+				console.log('case 1');
+				
+				let widthScale = 1;
+				let heightScale = 1;
+				
+				let j = screenHeight;
+				let i = screenWidth;
+				while (true)
+				{
+					j -= 640;
+					i -= 360;
+					if (j < 640)
+					{
+						break;
+					}
+					
+					if (i < 360)
+					{
+						break;
+					}
+					widthScale ++;
+					heightScale++;
+				}
+				
+				document.getElementById('myCanvas').style.width = (widthScale * 360).toString() + 'px';
+				document.getElementById('myCanvas').style.height = (heightScale * 640).toString() + 'px';
+			}
+		}
+		else {
+			console.log('devicePixelRatio: ' + window.devicePixelRatio);
+			
+			if (screenHeight / screenWidth == 640/360)
+			{
+				console.log('case 1');
+				
+				document.getElementById('myCanvas').style.width = '100vw';
+				document.getElementById('myCanvas').style.height = '100vh';
+			}
+			else {
+				console.log('case 2');				
+				
+				let newWidth = 
+				(Math.floor( (Math.trunc(window.devicePixelRatio) * screenWidth) / 360 ) * 360).toString() + 'px';
+				let newHeight = 
+				(Math.floor( (Math.trunc(window.devicePixelRatio) * screenHeight) / 640 ) * 640).toString() + 'px';
+				
+				document.getElementById('myCanvas').style.width = newWidth;
+				
+				document.getElementById('myCanvas').style.height = newHeight;
+				
+				console.log('newWidth: ' + newWidth);
+				console.log('newHeight: ' + newHeight);
+			}
+		}
 		
 		console.log('screen width: ' + screenWidth);
 		console.log('screen height: ' + screenHeight);
-
-		this.m_context.canvas.width = Math.floor(screenWidth / this.m_context.canvas.width) * 
-		this.m_context.canvas.width;
-			
-		this.m_context.canvas.height = Math.floor(screenHeight / this.m_context.canvas.height) * 
-		this.m_context.canvas.height;
 		
 		console.log('context width: ' + this.m_context.canvas.width);
 		console.log('context height: ' + this.m_context.canvas.height);
