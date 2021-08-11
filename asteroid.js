@@ -15,8 +15,7 @@ Asteroid.prototype = {
 		
 		if (this.m_y > ctx.canvas.height)
 		{
-			this.m_x = Math.floor(Math.random() * (ctx.canvas.width - img.width));
-			this.m_y = Math.floor(Math.random() * (-ctx.canvas.height));
+			this.reset();
 		}
 	},
 	draw: function() {
@@ -24,5 +23,40 @@ Asteroid.prototype = {
 		let img = this.m_image;
 		
 		ctx.drawImage(img, this.m_x, this.m_y, img.width, img.height);
+	},
+	
+	getHitboxes: function() {
+		const hitboxes = [
+			{
+				name: 'default',
+				x: this.m_x,
+				y: this.m_y,
+				w: this.m_image.width,
+				h: this.m_image.height
+			}
+		];
+		
+		return hitboxes;
+	},
+	
+	collisionWith: function(sprite)
+	{
+		if (sprite instanceof Player)
+		{
+			this.reset();
+		}
+	},
+	
+	reset: function() {
+		let ctx = this.m_context;
+		let img = this.m_image;
+		
+		this.m_x = Math.floor(Math.random() * (ctx.canvas.width - img.width));
+		this.m_y = Math.floor(Math.random() * (-ctx.canvas.height));
 	}
 }
+
+
+
+
+

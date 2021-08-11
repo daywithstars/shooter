@@ -2,6 +2,7 @@ function Application(context) {
 
     this.m_context = context;
     this.m_keyboard = new Keyboard(document);
+    this.m_collider = new Collider();
     
     this.m_images = {
     	background_image1: 'background-image1.png',
@@ -65,6 +66,7 @@ Application.prototype = {
 		{
 			this.m_screens[i].update(this.m_elapsedTime);
 		}
+		this.m_collider.update();
 		this.m_keyboard.clearFrame();
 		
 		this.draw();

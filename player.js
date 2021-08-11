@@ -4,8 +4,8 @@ function Player(context, image, keyboard) {
 	this.m_image = image;
 	this.m_speed = 0.200;
 	
-	this.m_x = 300;
-	this.m_y = 300;
+	this.m_x = context.canvas.width / 2;
+	this.m_y = context.canvas.height - image.height;
 }
 Player.prototype = {
 	update: function(elapsedTime) {
@@ -78,5 +78,37 @@ Player.prototype = {
 		let img = this.m_image;
 
 		ctx.drawImage(img, this.m_x, this.m_y, img.width, img.height);
+	},
+	
+	getHitboxes: function() {
+		const hitboxes = [
+			{
+				name: 'default',
+				x: this.m_x,
+				y: this.m_y,
+				w: this.m_image.width,
+				h: this.m_image.height
+			}
+		];
+		
+		return hitboxes;
+	},
+	
+	collisionWith: function(sprite) {
+		if (sprite instanceof Asteroid)
+		{
+			console.log('collision with Asteroid');
+			this.reset();
+		}
+	},
+	
+	reset: function() {
+		this.m_x = this.m_context.canvas.width / 2;
+		this.m_y = this.m_context.canvas.height - this.m_image.height;
 	}
 }
+
+
+
+
+

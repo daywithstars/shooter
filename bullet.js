@@ -19,5 +19,8 @@ Bullet.prototype = {
 		let ctx = this.m_context;
 		
 		ctx.drawImage(this.m_image, this.m_x, this.m_y, this.m_image.width, this.m_image.height);
+	},
+	
+	collisionWith: function(sprite) {
 	}
 }
